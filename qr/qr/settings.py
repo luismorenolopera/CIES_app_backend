@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -105,11 +105,11 @@ WSGI_APPLICATION = 'qr.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
-	    'USER': os.environ.get('POSTGRES_USER'),
-	    'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-	    'HOST': os.environ.get('DB_HOST'),
-	    'PORT': os.environ.get('DB_PORT'),
+        'NAME': os.environ.get('POSTGRES_DB', 'db_name'),
+	    'USER': os.environ.get('POSTGRES_USER', 'db_user'),
+	    'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'db_password'),
+	    'HOST': os.environ.get('DB_HOST', 'db_host'),
+	    'PORT': os.environ.get('DB_PORT', 5432),
     }
 }
 
@@ -189,7 +189,7 @@ sentry_sdk.init(
 #######   Email  ###############
 ################################
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER', 'user@email.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD', 'secret_password')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

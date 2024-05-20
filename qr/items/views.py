@@ -559,7 +559,7 @@ class BrandItem(viewsets.ModelViewSet):
                 type_item=typeitem_pk, type_item__company=company_pk)
         except ObjectDoesNotExist:
             return Response({"item": "No existe el tipo de objeto"}, status=status.HTTP_400_BAD_REQUEST)
-        serializer = BrandSerializer(brand, data=data)
+        serializer = None
         if serializer.is_valid():
             serializer.validated_data['company'] = company
             serializer.validated_data['type_item'] = typeitem
